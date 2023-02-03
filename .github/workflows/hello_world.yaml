@@ -6,14 +6,34 @@
 # Caso tenha dificuldades com a sintaxe de yaml:
 # https://learnxinyminutes.com/docs/yaml/ 
 
-# este é o nome do workflow
+# este é o nome do workflow, que aparece no menu 
+# "Actions" do seu repositório.
 name: Hello world workflow
+
+# O nome das execuções de fluxo de trabalho geradas pelo fluxo de trabalho. 
+# O GitHub exibe o nome da execução de fluxo de trabalho na lista de execuções 
+# de fluxo de trabalho, na guia "Ações" do repositório. 
+# Se run-name for omitido ou for apenas um espaço em branco, o nome da execução 
+# será definido como informações específicas do evento para a execução de fluxo 
+# de trabalho. Por exemplo, para um fluxo de trabalho disparado por um evento 
+# push ou pull_request, ele é definido como a mensagem de commit.
+# Esse valor pode incluir expressões e referenciar os contextos github e inputs
+run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+
+# Aqui, podemos ver mais detalhes sobre os contextos.
+# Os contextos são uma forma de acessar informações sobre execuções 
+# de fluxo de trabalho, variáveis, ambientes dos executores, trabalhos 
+# e etapas. Cada contexto é um objeto que contém propriedades, 
+# que podem ser cadeia de caracteres ou outros objetos
+# https://docs.github.com/pt/actions/learn-github-actions/contexts
 
 # identificação dos eventos. 
 # Há uma lista enorme de eventos que 
 # podemos usar como trigger.
 # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+# https://docs.github.com/pt/actions/using-workflows/events-that-trigger-workflows
 on:
+# on: [push, fork]
   push:
     branches:
       - main
