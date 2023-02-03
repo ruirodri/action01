@@ -53,7 +53,7 @@ jobs:
       # específico, um branch... Qualquer identificador 
       # do git válido. Neste caso, é a action que baixa 
       # o código no ambiente de execução (runner)
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       #este é o nome do step
       - name: hello world
         # este é o comando que vai ser executado neste step. 
