@@ -1,5 +1,18 @@
+# Aqui você tem um guia de Sintaxe para o 
+# Github Actions:
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+# https://docs.github.com/pt/actions/using-workflows/workflow-syntax-for-github-actions
+
+# Caso tenha dificuldades com a sintaxe de yaml:
+# https://learnxinyminutes.com/docs/yaml/ 
+
+# este é o nome do workflow
 name: Hello world workflow
 
+# identificação dos eventos. 
+# Há uma lista enorme de eventos que 
+# podemos usar como trigger.
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 on:
   push:
     branches:
@@ -9,13 +22,25 @@ on:
       - main
   workflow_dispatch:
 
+# grupo de jobs neste workflow 
 jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
+      # actions/checkout se refere ao projeto público
+      # (https://github.com/actions/checkout), e o @v2
+      # se refere à tag v2, mas pode ser uma tag, um commit 
+      # específico, um branch... Qualquer identificador 
+      # do git válido. Neste caso, é a action que baixa 
+      # o código no ambiente de execução (runner)
       - uses: actions/checkout@v2
+      #este é o nome do step
       - name: hello world
+        # este é o comando que vai ser executado neste step. 
+        # neste caso, ao invés de uma action preexistente 
+        # estamos executando um shell command.
         run: echo "Hello world"
+        # e este shell command vai ser executado no bash 
         shell: bash
 
   goodbye:  
